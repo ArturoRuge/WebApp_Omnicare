@@ -1,0 +1,90 @@
+body{
+	background-image: url("../img/pattern-bg.jpg");
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.main-nav{
+	padding: 25px;
+	background-color: #457b9d;
+	margin-bottom: 30px;
+}
+.nav-link{
+	color: #f1faee;
+}
+.nav-link:hover{
+	color:#a8dadc;
+}
+.button{
+	color: #fff;
+	border-radius: 5px;
+}
+.button--important{
+	background-color: #e63946;
+}
+.logo{
+	margin-right: auto;
+	padding: 5px;
+	background-color: #fff;
+	border-radius: 5px;
+	width: 100px;
+	position: relative;
+}
+.logo img{
+	width: 100%;
+}
+.logo::after{
+	content: "Beta";
+	position: absolute;
+	bottom: 0;
+	right: -45px;
+	color: #fff;
+	font-family: monospace;
+
+}
+
+.main-message{
+	position: relative;
+}
+.main-message_item{
+	position: fixed;
+	bottom: 15px;
+	right: 20px;
+	padding: 10px;
+	background-color: #e63946;
+	color: #fff;
+	z-index: 10;
+	border-radius: 5px;
+}
+.main-message_item::after{
+	content: "";
+	position: absolute;
+	z-index: 10;
+	bottom: -20px;
+	right: 10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #e63946 transparent transparent transparent;
+	z-index: 10;
+}
+.table{
+	background-color: #f1faee; 
+}
+.main{
+	padding: 30px;
+	background-color: rgba(255, 255, 255, .7);
+}
+footer{
+	background-color: #eee;
+	padding: 15px;
+	text-align: center;
+	font-size: .8em;
+	margin-top: auto;
+
+}
+footer p{
+	margin: 0;
+}
+input.btn{
+	margin-top: 2em;
+}

@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block content%}
+	<p>Ultimas 10 ventas realizadas este mes</p>
+
+	<table class="table">
+		
+		<thead class="thead-dark">
+			{% for list in dataSales[:1] %}
+				<tr>
+					{% for data in list %}
+						<th> {{ data }} </th>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</thead>
+		
+		
+		<tbody>
+			{% if countSales != 1 %}
+				{% for list in dataSales[(countSales-10):] %}
+				<tr>
+					{% for data in list %}
+						<td> {{ data }} </td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			{% endif %}
+		</tbody>
+		
+	</table>
+
+{% endblock %}

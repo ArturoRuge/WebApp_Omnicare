@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% from "_macro.html" import render_field %}
+
+ {% block content %}
+ 	<div class="container">
+ 		<div class="row">
+ 			<div class="col">
+			 	<p>Hola, para consultar la base de datos de Omnicare, es necesario que ingreces tu nombre de usuario y contrasena en el siguiente formulario. </p>
+
+			 	<form name="login" id="loginForm" method="POST">
+			 		<div class="form-group">	
+				 		{{ render_field(form.username, class="form-control") }}
+				 		{{ render_field(form.password, class="form-control") }}
+				 		<input class="form-control" type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+				 		<input class="btn btn-primary" type="submit" name="Login" value="Ingresar">
+			 		</div>
+			 	</form>
+		 	</div>
+		 	<div class="col">
+		 		
+		 		<img src="{{ url_for("static", filename="img/index.png" )}}"">
+		 	</div>
+ 	</div>
+ 	</div>
+
+ {% endblock %} 

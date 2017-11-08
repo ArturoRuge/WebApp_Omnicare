@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	  <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/styles.css" )}}">
+</head>
+<body >
+	<div class="container-fluid">
+		<header>
+			<nav class="main-nav">
+				<ul class="nav justify-content-end">
+					<li class="nav-item logo"><img src="{{ url_for("static", filename="img/Omnicare_logo.gif" )}}"></li>
+					{% if not login %}
+						<li class="nav-item"><a class="nav-link btn button button--important" href="/">Login</a></li>
+					{% endif%}
+					{% if login %}
+
+						<li class="nav-item"><a class="nav-link btn btn-secondary" href="/logout">Salir</a></li>
+						<li class="nav-item"><a class="nav-link" href="/ventas">Ultimas Ventas</a></li>
+						<li class="nav-item"><a  class="nav-link" href="/productosporcliente">Productos por Cliente</a></li>
+						<li class="nav-item"><a class="nav-link" href="/clientesporproducto">Clientes por Producto</a></li>
+						<li class="nav-item"><a class="nav-link" href="/productosmasvendidos">Productos mas vendidos</a></li>
+						<li class="nav-item"><a class="nav-link" href="/clientesmascompradores">Mejores Clientes</a></li>
+					{% endif %}
+					
+				</ul>
+			</nav>
+		</header>
+		<main class="main">
+			<h1> {{ title }} </h1>
+			{% block content %}
+
+			{% endblock%}
+
+			<div class="main-message">
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+						<div class="main-message_item">
+							{{ message }}
+						</div>
+						{% endfor %}
+					{% endif %}
+					{% endwith%}
+			</div>
+		</main>
+
+	</div>
+	<footer>
+		<p>OmniCare - Beta - Arturo Ruge - Emir Gonzales</p>
+	</footer>
+
+</body>
+</html>

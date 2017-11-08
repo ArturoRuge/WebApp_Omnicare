@@ -1,0 +1,42 @@
+{% extends "base/base.html" %}
+{% from "_macro.html" import render_field %}
+
+<h1> {{title}} </h1>
+
+{% block content %}
+
+	<p>Ingresa la cantidad de productos que quieres consultar</p>
+
+	<form name="numberItems" id="numberForm" method="POST">
+		{{ render_field(form.numberItems, class="form-control") }}
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+		<input class="btn btn-primary" type="submit" name="consult" value="Consultar" />
+	</form>
+
+{% if numberItems %}
+	<table class="table">
+		
+		<thead class="thead-dark">
+			{% for list in topProducts[:1] %}
+				<tr>
+					{% for data in list %}
+						<th> {{ data }} </th>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</thead>
+		
+		
+		<tbody>
+			{% for list in topProducts[1: numberItems+1] %}
+			<tr>
+				{% for data in list %}
+					<td> {{ data }} </td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+		
+	</table>	
+{% endif %}
+{% endblock %}

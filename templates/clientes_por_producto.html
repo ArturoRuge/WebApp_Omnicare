@@ -1,0 +1,64 @@
+{% extends "base/base.html" %}
+{% from "_macro.html" import render_field %}
+
+{% block content %}
+
+
+<form name="products" id="productsForm" method="POST">
+		{{ render_field(form.product, class="form-control") }}
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+		<input class="btn btn-primary" type="submit" name="search" value="Buscar">
+
+</form>
+
+	
+{% if option %}
+	<h2>Nombre de productos que coinciden con la busqueda</h2>
+	{% if not listProducts %}
+		<p>No hay productos que coincidan con su busqueda </p>
+	{% endif %}
+
+	{% if listProducts %}
+		<ul>
+		{% for product in listProducts %}
+				<li>
+					<a href="/clientesporproducto/{{ product }}">{{ product }}</a>
+				</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+{% endif %}
+
+
+	{% if product %}
+		<p>Lista de clientes que compraron {{ product }} </p>
+
+		<table class="table">
+		
+		<thead class="thead-dark">
+			{% for list in dataSales[:1] %}
+				<tr>
+					{% for data in list %}
+						<th> {{ data }} </th>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</thead>
+		
+		
+		<tbody>
+			{% for list in dataSales[1:] %}
+			<tr>
+				{% if product in list %}
+					{% for data in list %}
+						<td> {{ data }} </td>
+					{% endfor %}
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</tbody>
+		
+	</table>
+	{% endif %}
+{% endblock %}
