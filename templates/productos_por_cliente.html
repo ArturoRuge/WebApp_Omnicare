@@ -20,9 +20,9 @@
 	{% if listClients %}
 		<ul>
 		{% for client in listClients %}
-				<li>
-					<a href="/productosporcliente/{{ client }}">{{ client }}</a>
-				</li>
+			<li>
+				<a href="/productosporcliente/{{ client }}">{{ client }}</a>
+			</li>
 		{% endfor %}
 		</ul>
 	{% endif %}
@@ -30,34 +30,32 @@
 {% endif %}
 
 
-	{% if client %}
-		<p>Lista de productos comprados por {{ client }} </p>
+{% if client %}
+	<p>Lista de productos comprados por {{ client }} </p>
 
-		<table class="table">
-		
-		<thead class="thead-dark">
-			{% for list in dataSales[:1] %}
-				<tr>
-					{% for data in list %}
-						<th> {{ data }} </th>
-					{% endfor %}
-				</tr>
-			{% endfor %}
-		</thead>
-		
-		
-		<tbody>
-			{% for list in dataSales[1:] %}
+	<table class="table">
+	
+	<thead class="thead-dark">
+		{% for list in dataSalesClient[:1] %}
 			<tr>
-				{% if client in list %}
-					{% for data in list %}
-						<td> {{ data }} </td>
-					{% endfor %}
-				{% endif %}
+				{% for data in list %}
+					<th> {{ data }} </th>
+				{% endfor %}
 			</tr>
-			{% endfor %}
-		</tbody>
-		
-	</table>
-	{% endif %}
+		{% endfor %}
+	</thead>
+	
+	
+	<tbody>
+		{% for list in dataSalesClient[1:] %}
+		<tr>
+				{% for data in list %}
+					<td> {{ data }} </td>
+				{% endfor %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+	<a class="btn btn-secondary" href="{{ pathcsv }}" download target="_blank">Descarga Datos {{ pathcsv }}</a>
+{% endif %}
 {% endblock %}

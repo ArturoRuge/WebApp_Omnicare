@@ -37,7 +37,7 @@
 		<table class="table">
 		
 		<thead class="thead-dark">
-			{% for list in dataSales[:1] %}
+			{% for list in dataSalesProduct[:1] %}
 				<tr>
 					{% for data in list %}
 						<th> {{ data }} </th>
@@ -48,17 +48,16 @@
 		
 		
 		<tbody>
-			{% for list in dataSales[1:] %}
+			{% for list in dataSalesProduct[1:] %}
 			<tr>
-				{% if product in list %}
 					{% for data in list %}
 						<td> {{ data }} </td>
 					{% endfor %}
-				{% endif %}
 			</tr>
 			{% endfor %}
 		</tbody>
 		
 	</table>
+	<a class="btn btn-secondary" href="{{ pathcsv }}" download >Descarga Datos {{ pathcsv }}</a>
 	{% endif %}
 {% endblock %}

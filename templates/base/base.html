@@ -13,6 +13,7 @@
 					<li class="nav-item logo"><img src="{{ url_for("static", filename="img/Omnicare_logo.gif" )}}"></li>
 					{% if not login %}
 						<li class="nav-item"><a class="nav-link btn button button--important" href="/">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
 					{% endif%}
 					{% if login %}
 
@@ -22,6 +23,8 @@
 						<li class="nav-item"><a class="nav-link" href="/clientesporproducto">Clientes por Producto</a></li>
 						<li class="nav-item"><a class="nav-link" href="/productosmasvendidos">Productos mas vendidos</a></li>
 						<li class="nav-item"><a class="nav-link" href="/clientesmascompradores">Mejores Clientes</a></li>
+						<li class="nav-item"><a class="nav-link" href="/cambiarpass">Cambiar Pass</a></li>
+
 					{% endif %}
 					
 				</ul>

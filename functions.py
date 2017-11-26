@@ -7,9 +7,9 @@ from flask import session
 from flask import redirect
 from flask import url_for
 
+import time
 import forms
 import csv
-
 
 def is_user(user, password):
 	"""
@@ -62,6 +62,35 @@ def readSales():
 	except:
 		dataSales.append(["EL ARCHIVO CSV NO EXISTE"])
 	return dataSales
+
+def dataResultSerch(dataSales, client):
+	"""
+	input: dataSales- Lista de datos de sales.csv
+			client- cliente que busca el usuario
+	output: lista datos cliente seleccionado por el usuario
+	"""
+	dataSalesClient = []
+	cont = 0
+	for list in dataSales:
+		if cont == 0:
+			dataSalesClient.append(list)
+			cont += 1
+		if client in list:
+			dataSalesClient.append(list)
+	return dataSalesClient
+
+def dataResult(topProducts, numberItems):
+	dataSalesItems = []
+	cont = 0
+	for list in topProducts:
+		if cont == 0:
+			dataSalesItems.append(list)
+		if 0 < cont <= numberItems:
+			dataSalesItems.append(list)
+		cont += 1
+	return dataSalesItems
+
+
 
 def userInSession():
 	"""
@@ -188,3 +217,66 @@ def messageUserSession(session):
 	else:
 		login = False
 	return login
+
+def newUser(user, password1, password2):
+	new_user = True
+	new_pass = True
+	with open("usuarios.csv") as archivo:
+			datos = csv.reader(archivo)
+			for linea in datos:
+				for dato in linea:
+					if dato == user:
+						new_user = False
+						reject_message = "Este nombre de usuario ya esta registrado, digita uno nuevo!"
+						flash(reject_message)
+
+	if password1 != password2:
+		new_pass = False
+		reject_message2 = "Las contrasenas no coinciden!"
+		flash(reject_message2)
+
+	if new_user and new_pass:
+		mensaje = "\n" + user + "," + password1
+		with open("usuarios.csv", "a") as archivo:
+			writer = csv.writer(archivo)
+			archivo.write(mensaje)
+
+		welcome_message = "Gracias por registrate, ya puedes hacer Login!!"
+		flash(welcome_message)
+	
+	print("Registro correcto")
+
+
+def newPass(user, password1, password2):
+
+	userList = []
+	if password1 != password2:
+		new_pass = False
+		reject_message2 = "Las contrasenas no coinciden!"
+		flash(reject_message2)
+	else:
+		with open("usuarios.csv") as archivo:
+			for linea in archivo:
+				columnas = linea.split(",")
+				if columnas[0]==user:
+					columnas[1]=password1+"\n"
+				userList.append(",".join(columnas))
+				
+		with open("usuarios.csv", "w") as archivo:
+			archivo.writelines(userList)
+
+		newpass_success = "Tu password ha sido modificado. Utilizalo en tu proxima sesion"
+		flash(newpass_success)
+
+def generatecsv(dataSales):
+	"""
+	input: dataSales- Contenido que se va a guardar en un nuevo csv
+	output: url del archivo generado
+	"""
+	actualDate = time.strftime('%y%b%d_%H%M%S')
+	pathcsv = "static/consultas/resultados_" + actualDate + ".csv"
+	with open(pathcsv, "w") as archivo:
+		writer = csv.writer(archivo)
+		writer.writerows(dataSales)
+	return pathcsv
+

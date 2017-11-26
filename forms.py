@@ -34,5 +34,25 @@ class numberForm(Form):
 		validators.Required("Digita la cantidad de items que quieres consultar")
 		])
 
+class FormularioRegistro(Form):
+	username = StringField("username",
+		[
+		validators.Required("Digita un usuario")
+		])
+	password1 = PasswordField("password", 
+		[
+		validators.Required("Digita una contrasena"),
+		validators.Length(min=5, max=15, message="La contasena sebe tener min 5 y maximo 15 caracteres")
+		])
+	password2 = PasswordField("repeat password")
+
+class newPassForm(Form):
+	password1 = PasswordField("New password", 
+		[
+		validators.Required("Digita una contrasena"),
+		validators.Length(min=5, max=15, message="La contasena sebe tener min 5 y maximo 15 caracteres")
+		])
+	password2 = PasswordField("repeat password")
+
 
 	

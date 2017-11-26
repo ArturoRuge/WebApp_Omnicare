@@ -17,7 +17,7 @@
 	<table class="table">
 		
 		<thead class="thead-dark">
-			{% for list in topClients[:1] %}
+			{% for list in dataSalesClients[:1] %}
 				<tr>
 					{% for data in list %}
 						<th> {{ data }} </th>
@@ -28,7 +28,7 @@
 		
 		
 		<tbody>
-			{% for list in topClients[1: numberItems+1] %}
+			{% for list in dataSalesClients[1:] %}
 			<tr>
 				{% for data in list %}
 					<td> {{ data }} </td>

@@ -2,7 +2,7 @@ TP OMNICARE
 
 Detalles de la aplicación
 
-El desarrollo de Omnicare consiste en un ejercicio de aplicación web que le permite al usuario poder iniciar sesión y realizar diferentes consultas a una base de datos compuesta por un archivo csv.
+El desarrollo de Omnicare consiste en una simulaci{on de aplicación web que le permite al usuario poder iniciar sesión y realizar diferentes consultas a una base de datos compuesta por un archivo csv.
 
 - El flujo del programa empieza en el archivo main.py, donde estan definidas las diferentes app.route de la aplicación, donde cada una:
  1- Devuelve su respectivo archivo html dependiendo del requerimiento del usuario 2- Si es necesario, muestra un formulario, el cual esta alojado en el archivo form.py. 
